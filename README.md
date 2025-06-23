@@ -4,11 +4,11 @@ Para esta actividad se realizó una API en la que, a partir de peticiones REST, 
 
 ## Documentación
 
-### [Archivo JSON con documentación generada por FastAPI]()
+### [Archivo JSON con documentación generada por FastAPI](https://github.com/ivan-psz/MDW-API_con_CRUD/blob/main/Documentaci%C3%B3n.json)
 
 ### Archivos
-* [`model.py`](): Archivo en donde se define el modelo `Estudiante` con uso de la biblioteca `pydantic`, además de la función `normalize_degree()` para acortar el nombre de la carrera de los estudiantes y la función `load_students()` para leer el CSV con los datos de los estudiantes.
-* [`main.py`](): Archivo en donde se encuentra codificada la API. Este importa `model.py` para cargar los datos del CSV mencionado y se definen los endpoints.
+* [`model.py`](https://github.com/ivan-psz/MDW-API_con_CRUD/blob/main/model.py): Archivo en donde se define el modelo `Estudiante` con uso de la biblioteca `pydantic`, además de la función `normalize_degree()` para acortar el nombre de la carrera de los estudiantes y la función `load_students()` para leer el CSV con los datos de los estudiantes.
+* [`main.py`](https://github.com/ivan-psz/MDW-API_con_CRUD/blob/main/main.py): Archivo en donde se encuentra codificada la API. Este importa `model.py` para cargar los datos del CSV mencionado y se definen los endpoints.
 
 ### Endpoints
 
