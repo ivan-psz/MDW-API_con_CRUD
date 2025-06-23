@@ -1,0 +1,335 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Actividad 5 - API con CRUD",
+    "summary": "API que implementa las cuatro operaciones de un CRUD",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/estudiantes": {
+      "get": {
+        "summary": "Obtener todos los estudiantes",
+        "description": "Recupera la lista completa de estudiantes.\n\nDevuelve:\n\n    list[Estudiante] o dict: Lista de estudiantes o mensaje de error si está vacía.",
+        "operationId": "get_students_estudiantes_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Agregar nuevo estudiante",
+        "description": "Inserta un nuevo registro de estudiante.\nValida unicidad de ID y matrícula antes de la inserción.\n\nParámetros:\n\n    student (Estudiante): Datos del estudiante por agregar.\n\nDevuelve:\n\n    dict: Mensaje de éxito o error por ID duplicado.",
+        "operationId": "post_student_estudiantes_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Estudiante"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar estudiante existente",
+        "description": "Actualiza los datos de un estudiante existente.\nBusca por ID y reemplaza el objeto completo.\n\nParámetros:\n\n    student (Estudiante): Datos actualizados del estudiante.\n\nDevuelve:\n\n    dict: Mensaje de éxito o error si no existe el ID.",
+        "operationId": "put_student_estudiantes_put",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Estudiante"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar estudiante por ID",
+        "description": "Elimina un estudiante según su identificador.\n\nParámetros:\n\n    id (int): ID del estudiante a eliminar.\n\nDevuelve:\n\n    dict: Mensaje de éxito y registro eliminado, o error si no existe.",
+        "operationId": "delete_student_estudiantes_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estudiantes/id/{id}": {
+      "get": {
+        "summary": "Buscar estudiante por ID",
+        "description": "Busca un estudiante por su identificador único.\n\nParámetros:\n\n    id (int): Identificador del estudiante.\n\nDevuelve:\n\n    Estudiante o dict: Instancia de Estudiante o mensaje de no encontrado.",
+        "operationId": "get_by_id_estudiantes_id__id__get",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/estudiantes/matricula/{matricula}": {
+      "get": {
+        "summary": "Buscar estudiante por matrícula",
+        "description": "Recupera un registro de estudiante según su matrícula académica.\n\nParámetros:\n\n    matricula (str): Matrícula del estudiante.\n\nDevuelve:\n\n    Estudiante o dict: Registro encontrado o mensaje de no encontrado.",
+        "operationId": "get_by_matricula_estudiantes_matricula__matricula__get",
+        "parameters": [
+          {
+            "name": "matricula",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Matricula"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Estudiante": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id"
+          },
+          "matricula": {
+            "type": "string",
+            "title": "Matricula"
+          },
+          "nombre": {
+            "type": "string",
+            "title": "Nombre"
+          },
+          "genero": {
+            "type": "string",
+            "title": "Genero"
+          },
+          "edad": {
+            "type": "integer",
+            "title": "Edad"
+          },
+          "estatus": {
+            "type": "string",
+            "title": "Estatus"
+          },
+          "carrera": {
+            "type": "string",
+            "title": "Carrera"
+          },
+          "semestre": {
+            "type": "integer",
+            "title": "Semestre"
+          },
+          "materias_aprobadas": {
+            "type": "integer",
+            "title": "Materias Aprobadas"
+          },
+          "creditos_acumulados": {
+            "type": "integer",
+            "title": "Creditos Acumulados"
+          },
+          "porcentaje_avanzado": {
+            "type": "integer",
+            "title": "Porcentaje Avanzado"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "matricula",
+          "nombre",
+          "genero",
+          "edad",
+          "estatus",
+          "carrera",
+          "semestre",
+          "materias_aprobadas",
+          "creditos_acumulados",
+          "porcentaje_avanzado"
+        ],
+        "title": "Estudiante",
+        "description": "Representa el esquema de datos de un estudiante.\n\nAtributos:\n    id (int): Identificador único del estudiante.\n    matricula (str): Matrícula.\n    nombre (str): Nombre completo.\n    genero (str): Género (Masculino/Femenino).\n    edad (int): Edad en años.\n    estatus (str): Estado académico (ej. activo, baja temporal).\n    carrera (str): Iniciales de la carrera (ITI, ICC, LCC).\n    semestre (int): Semestre actual.\n    materias_aprobadas (int): Número de materias aprobadas.\n    creditos_acumulados (int): Créditos acumulados.\n    porcentaje_avanzado (int): Porcentaje de avance en la carrera."
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      }
+    }
+  }
+}
